@@ -1,0 +1,7 @@
+- muncul kalender ketika di pesan dan tanggal itu tidak bisa di booking dan berubah menjadi merah
+- membenarkan controller lagi
+- upload file pdf
+- di jadwal menampilkan jadwal penggunaan dan berupa kalender agar mengetahui tanggal itu sudah di tag atau belum
+- histori sesuai username belum berfungsi 
+- staf,kasir bisa meng acc pengajuan
+- notifikasi masuk masyarakat kasir sama staff
