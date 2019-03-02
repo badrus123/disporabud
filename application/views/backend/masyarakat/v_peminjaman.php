@@ -16,6 +16,12 @@
     <link href="<?php echo base_url() ?>assets/backend/css/animate.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/backend/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/backend/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/backend/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" rel="stylesheet"> -->
+    <link href="<?php echo base_url() ?>assets/backend/css/datepicker.css" rel="stylesheet">
+  
+
 
     <link href="<?php echo base_url() ?>assets/backend/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
@@ -62,7 +68,7 @@
                 <li>
                     <a href="<?php echo base_url() ?>c_disporabud/historyPenyewaan"><i class="fa fa-history"></i> <span class="nav-label">Histori Penyewaan</span></a>
                 </li>
-                
+
         </div>
     </nav>
 
@@ -139,7 +145,7 @@
             </div>
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
-            
+
             </div>
             <div class="row">
         </div>
@@ -148,11 +154,11 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <h5>Pengajuan Penyewaan</h5>
-                            
+
                         </div>
                         <div class="ibox-content">
                             <form method="POST" name="form" id="form" class="form-horizontal" action="<?php echo base_url() ?>c_disporabud/tambahPeminjaman">
-                                
+
                                 <div class="form-group"><label class="col-sm-2 control-label">ID Peminjaman</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="id_peminjaman" value="<?php echo $this->session->id_peminjaman ?>" readonly>
@@ -176,14 +182,14 @@
                                         <input type="text" class="form-control" name="nama_acara" required="">
                                     </div>
                                 </div>
-                                <div class="form-group"><label class="col-sm-2 control-label">Tanggal Pelaksanaan</label>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Tanggal Pelaksanaan</label>
                                     <div class="col-sm-10">
-                                        <input type="date" class="form-control" name="tgl_pelaksanaan" required="">
+                                    <div class="input-daterange input-group" id="datepicker">
+                                        <input type="text" class="input-sm form-control" name="tgl_pelaksanaan" />
+                                        <span class="input-group-addon">sampai</span>
+                                        <input type="text" class="input-sm form-control" name="tgl_selesai" />
                                     </div>
-                                </div>
-                                <div class="form-group"><label class="col-sm-2 control-label">Tanggal Selesai</label>
-                                    <div class="col-sm-10">
-                                        <input type="date" class="form-control" name="tgl_selesai" required="">
                                     </div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Note</label>
@@ -192,15 +198,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Arena/Lapang</label>
-
                                     <div class="col-sm-10">
-                                        <select class="form-control m-b" name="fasilitas" readonly>
-                                            <?php foreach ($fasilitas as $f) { ?>
+                                        <select class="form-control m-b" name="fasilitas">
+                                            <?php foreach ($fasilitas as $f) {?>
                                                 <option value="<?php echo $f->id_prasarana ?>">
-                                                    <?php echo $f->nama_prasarana ?> | 
+                                                    <?php echo $f->nama_prasarana ?> |
                                                     Rp. <?php echo number_format($f->tarif, 0, '', '.') ?>
                                                 </option>
-                                            <?php } ?>
+                                            <?php }?>
                                         </select>
                                     </div>
                                 </div>
@@ -214,7 +219,7 @@
                                     <div class="col-sm-4 col-sm-offset-2">
                                         <input type="submit" name="submit" class="btn btn-primary" value="Ajukan Penyewaan" onclick="return confirm('Terima kasih! Pengajuan telah dilakukan, harap lakukan pembayaran')">
                                         <!-- <button type="submit" class="btn btn-primary">Ajukan Penyewaan</button> -->
-                                        
+
                                     </div>
                                 </div>
                             </form>
@@ -236,6 +241,8 @@
     <!-- Mainly scripts -->
     <script src="<?php echo base_url() ?>assets/backend/js/jquery-3.1.1.min.js"></script>
     <script src="<?php echo base_url() ?>assets/backend/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+
     <script src="<?php echo base_url() ?>assets/backend/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="<?php echo base_url() ?>assets/backend/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
@@ -248,6 +255,7 @@
 
     <!-- iCheck -->
     <script src="<?php echo base_url() ?>assets/backend/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/backend/js/formscript.js"></script>
     <!-- <script>
       $(function() {
         $("form[name='form']").validate({
@@ -281,7 +289,7 @@
 
 <script>
 
-    
+
 
 </script>
 

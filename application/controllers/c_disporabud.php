@@ -673,7 +673,8 @@ class c_disporabud extends CI_Controller {
       );
 
 			$this->pembayaran->editPembayaran($id_transaksi, $data);
-			redirect('c_disporabud/index');
+			var_dump($data);
+			// redirect('c_disporabud/index');
 		}
 	}
 
@@ -729,5 +730,16 @@ class c_disporabud extends CI_Controller {
 		// $this->load->view('backend/admin/fd51');
 		// $this->load->view('backend/admin/v_home');
 		$this->load->view('backend/pengguna_dinas/v_staff_tambah_prasarana');
+	}
+	public function pengajuan(){
+		$data['data'] = $this->peminjaman->getJoin()->result();
+		$this->load->view('backend/pengguna_dinas/v_staff_kelola_pengajuan',$data);
+	}
+	public function accPengajuan($pk){
+		$data = array(
+			'approval_pengajuan' => 'Sudah diapprove'
+		);
+		$this->pembayaran->editPembayaran($pk,$data);
+		redirect("c_disporabud/pengajuan");
 	}
 }

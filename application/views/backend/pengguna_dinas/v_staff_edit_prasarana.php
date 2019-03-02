@@ -46,6 +46,9 @@
                 <li>
                     <a href="<?php echo base_url() ?>c_disporabud/index"><i class="fa fa-building"></i> <span class="nav-label">Prasarana</span></a>
                 </li>
+                <li>
+                    <a href="<?php echo base_url() ?>c_disporabud/pengajuan"><i class="fa fa-building"></i> <span class="nav-label">Pengajuan</span></a>
+                </li>
                 <!-- <li>
                     <a href="#"><i class="fa fa-history"></i> <span class="nav-label">Histori Penyewaan</span></a>
                 </li> -->
