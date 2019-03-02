@@ -658,7 +658,7 @@ class c_disporabud extends CI_Controller {
 			$id_transaksi = $_GET['bayar'];
 
       $config['upload_path']      = 'assets/img/bukti_bayar/';
-      $config['allowed_types']    = 'gif|jpg|png';
+      $config['allowed_types']    = 'gif|jpg|png|pdf';
       $config['max_size']         = 1024 * 2;
       $config['file_name']        = time().$_FILES['bukti_pembayaran']['name'];
       $this->load->library('Upload', $config);
