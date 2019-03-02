@@ -72,7 +72,7 @@
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary" href="#"><i class="fa fa-bars"></i> </a>
-            
+
 
         </div>
             <ul class="nav navbar-top-links navbar-right">
@@ -159,14 +159,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($data as $d) { ?>
+                                <?php foreach ($data as $d) {?>
                                     <tr>
                                         <td><?php echo $d->nama_lengkap ?></td>
                                         <td><?php echo $d->nama_prasarana ?></td>
                                         <td><?php echo date('d F Y', $d->tgl_pelaksanaan) ?></td>
+                                        <?php if (strpos($d->bukti_pembayaran, '.pdf') !== false): ?>
+                                        <td><a href="<?php echo base_url() . $d->bukti_pembayaran ?>" class="btn btn-success" target="_blank">Tampilkan Bukti</button></td>
+                                        <?php else: ?>
+
+
                                         <td>
                                             <a data-toggle="modal" data-target="#<?php echo $d->id_transaksi ?>">
-                                                <img src="<?php echo base_url().$d->bukti_pembayaran ?>" width="15%">
+                                                <img src="<?php echo base_url() . $d->bukti_pembayaran ?>" width="15%">
                                             </a>
 
                                             <!-- ini modal -->
@@ -179,7 +184,7 @@
                             <!-- <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small> -->
                         </div>
                         <div class="modal-body">
-                            <img width="50%" src="<?php echo base_url().$d->bukti_pembayaran ?>">
+                            <img width="50%" src="<?php echo base_url() . $d->bukti_pembayaran ?>">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
@@ -187,28 +192,29 @@
                     </div>
                 </div>
             </div>
-                                        </td>    
-                                        <td>
-                                            <?php if ($this->session->status_pembayaran == 'belum') { ?>
+                                        </td>
+                                <?php endif?>
+                                <td>
+                                        <?php if ($d->status_pembayaran == 'Belum dibayar') {?>
                                             <a href="<?php echo base_url() ?>c_disporabud/approveKasir?id=<?php echo $d->id_transaksi ?>">
                                                 <button class="btn btn-sm btn-primary">Approve</button>
                                             </a>
                                             <a href="<?php echo base_url() ?>c_disporabud/tolakKasir?id=<?php echo $d->id_transaksi ?>">
                                                 <button class="btn btn-sm btn-danger">Tolak</button>
                                             </a>
-                                            <?php } else { ?>
-                                                <?php if ($d->status_pembayaran == 'Ditolak') { ?>
+                                            <?php } else {?>
+                                                <?php if ($d->status_pembayaran == 'Ditolak') {?>
                                                     <button class="btn btn-sm btn-danger">Ditolak</button>
-                                                <?php } else { ?>
-                                                    <button class="btn btn-sm btn-primary">Sudah Di Approve</button>
-                                                <?php } ?>
-                                            <?php } ?>
+                                                <?php } else {?>
+                                                    <button class="btn btn-sm btn-primary">Sudah Di Bayar</button>
+                                                <?php }?>
+                                            <?php }?>
                                         </td>
                                     </tr>
-                                <?php } ?>
+                                <?php }?>
                             </tbody>
-                            
-                    
+
+
                   </table>
                         </div>
 
@@ -248,7 +254,7 @@
                 responsive: true,
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [
-                    
+
                 ]
 
             });

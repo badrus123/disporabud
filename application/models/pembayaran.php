@@ -97,8 +97,7 @@ class pembayaran extends CI_Model {
 			select * from pembayaran pb join peminjaman pm
 			on pb.id_peminjaman = pm.id_peminjaman join prasarana pr
 			on pm.id_prasarana = pr.id_prasarana join masyarakat m
-			on pm.no_ktp = m.no_ktp where pb.bukti_pembayaran not like '-'
-			and pb.status_pembayaran = 'Belum dibayar'
+			on pm.no_ktp = m.no_ktp where pb.bukti_pembayaran not like '-' and pb.status_pembayaran not like 'Belum dibayar'
 			");
 	}
 }

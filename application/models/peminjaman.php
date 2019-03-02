@@ -30,7 +30,8 @@ class peminjaman extends CI_Model {
 		return $this->db->query(
 			'select * from peminjaman pn JOIN prasarana pr 
 			ON pn.id_prasarana = pr.id_prasarana JOIN pembayaran 
-			pb ON pn.id_peminjaman = pb.id_peminjaman');
+			pb ON pn.id_peminjaman = pb.id_peminjaman join masyarakat m
+			on pn.no_ktp = m.no_ktp ');
 	}
 
 	public function getLaporan(){

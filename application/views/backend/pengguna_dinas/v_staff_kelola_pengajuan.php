@@ -138,31 +138,57 @@
                             <table class="table table-striped table-bordered table-hover dataTables-example" >
                                     <thead>
                                         <tr>
+                                        <th>Peminjam</th>
                                         <th>Acara</th>
                                         <th>Prasarana</th>
                                         <th>Bukti Pembayaran</th>
                                         <th>Tanggal</th>
-                                        <th width="18%">Status</th>
+                                        <th>Status Pembayaran</th>
+                                        <th>Status Approval</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($data as $d) {?>
                                             <tr>
+                                                <td><?php echo $d->nama_lengkap ?></td>
                                                 <td><?php echo $d->nama_acara ?></td>
                                                 <td><?php echo $d->nama_prasarana ?></td>
                                                 <?php if ($d->bukti_pembayaran == "-"): ?>
                                                 <td>Belum ada bukti</td>
                                                 <?php else: ?>
-                                                <td><a href="<?php echo base_url().$d->bukti_pembayaran?>" class="btn btn-success" target="_blank">Tampilkan Bukti</button></td>
+                                                <td><a href="<?php echo base_url() . $d->bukti_pembayaran ?>" class="btn btn-success" target="_blank">Tampilkan Bukti</button></td>
                                                 <?php endif;?>
                                                 <td><?php echo date('d F Y', $d->tgl_pelaksanaan) ?></td>
-                                                <td>
-                                                    <?php if ($d->approval_pengajuan == "Belum diapprove") {?>
-                                                        <a href="<?php echo base_url(); ?>c_disporabud/accPengajuan/<?php echo $d->id_transaksi ?>" class="btn btn-sm btn-success">ACC</a>
-                                                    <?php } else {?>
-                                                        <button class="btn btn-sm btn-primary">Sudah diapprove</button>
-                                                    <?php }?>
-                                                </td>
+
+                                        <td>
+                                        <?php if ($d->status_pembayaran == 'Belum dibayar') {?>
+                                            <a href="<?php echo base_url() ?>c_disporabud/approveKasir?id=<?php echo $d->id_transaksi ?>">
+                                                <button class="btn btn-sm btn-primary">Approve</button>
+                                            </a>
+                                            <a href="<?php echo base_url() ?>c_disporabud/tolakKasir?id=<?php echo $d->id_transaksi ?>">
+                                                <button class="btn btn-sm btn-danger">Tolak</button>
+                                            </a>
+                                            <?php } else {?>
+                                                <?php if ($d->status_pembayaran == 'Ditolak') {?>
+                                                    <button class="btn btn-sm btn-danger">Ditolak</button>
+                                                <?php } else {?>
+                                                    <button class="btn btn-sm btn-primary">Sudah Di Bayar</button>
+                                                <?php }?>
+                                            <?php }?>
+                                        </td>
+                                        <td>
+                                        <?php if ($d->approval_pengajuan == 'Belum diapprove') {?>
+                                            <a href="<?php echo base_url() ?>c_disporabud/accPengajuan/<?php echo $d->id_transaksi ?>">
+                                                <button class="btn btn-sm btn-primary">Approve</button>
+                                            </a>
+                                            <?php } else {?>
+                                                <?php if ($d->status_pembayaran == 'Ditolak') {?>
+                                                    <button class="btn btn-sm btn-danger">Ditolak</button>
+                                                <?php } else {?>
+                                                    <button class="btn btn-sm btn-primary">Sudah Di Approve</button>
+                                                <?php }?>
+                                            <?php }?>
+                                        </td>
                                             </tr>
                                         <?php }?>
                                     </tbody>

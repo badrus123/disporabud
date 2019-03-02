@@ -669,7 +669,8 @@ class c_disporabud extends CI_Controller {
       $data_gambar = $config['upload_path'].$config['file_name'];
 
       $data = array(
-      	'bukti_pembayaran' => $data_gambar
+		  'bukti_pembayaran' => $data_gambar,
+		  'status_pembayaran' => "Sudah dibayar"
       );
 
 			$this->pembayaran->editPembayaran($id_transaksi, $data);
@@ -685,7 +686,12 @@ class c_disporabud extends CI_Controller {
 			'status_pembayaran' => 'Sudah dibayar'
 		);
 		$this->pembayaran->editPembayaran($id_transaksi, $data);
-		redirect('c_disporabud/index');
+		if ($this->session->akses == "staff"){
+			redirect('c_disporabud/pengajuan');
+		} else {
+			redirect('c_disporabud/index');
+		}
+		
 	}
 
 	public function tolakKasir(){
