@@ -673,8 +673,8 @@ class c_disporabud extends CI_Controller {
       );
 
 			$this->pembayaran->editPembayaran($id_transaksi, $data);
-			var_dump($data);
-			// redirect('c_disporabud/index');
+			// var_dump($data);
+			redirect('c_disporabud/index');
 		}
 	}
 
