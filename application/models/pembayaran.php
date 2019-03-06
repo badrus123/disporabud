@@ -100,4 +100,5 @@ class pembayaran extends CI_Model {
 			on pm.no_ktp = m.no_ktp where pb.bukti_pembayaran not like '-' and pb.status_pembayaran not like 'Belum dibayar'
 			");
 	}
+	
 }

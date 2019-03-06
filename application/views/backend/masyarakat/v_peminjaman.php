@@ -25,6 +25,7 @@
 
     <link href="<?php echo base_url() ?>assets/backend/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
+
 </head>
 
 <body>
@@ -255,7 +256,8 @@
 
     <!-- iCheck -->
     <script src="<?php echo base_url() ?>assets/backend/js/plugins/iCheck/icheck.min.js"></script>
-    <script src="<?php echo base_url() ?>assets/backend/js/formscript.js"></script>
+    
+    <script>$(document).ready(function () {$('.input-daterange').datepicker({datesDisabled: <?php echo $jadwal_terpakai;?>});});</script>
     <!-- <script>
       $(function() {
         $("form[name='form']").validate({

@@ -17,6 +17,7 @@
 
     <link href="<?php echo base_url() ?>assets/backend/css/animate.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/backend/css/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css" rel="stylesheet">
 
 </head>
 
@@ -61,7 +62,7 @@
                 <li>
                     <a href="<?php echo base_url() ?>c_disporabud/historyPenyewaan"><i class="fa fa-history"></i> <span class="nav-label">Histori Penyewaan</span></a>
                 </li>
-                
+
         </div>
     </nav>
 
@@ -70,7 +71,7 @@
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary" href="#"><i class="fa fa-bars"></i> </a>
-            
+
 
         </div>
             <ul class="nav navbar-top-links navbar-right">
@@ -136,10 +137,10 @@
                 	<h2>Jadwal Penggunaan Prasarana</h2><br>
                     <div class="alert alert-danger alert-dismissable">
                     <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    Harap lakukan pembayaran sebelum :  
-                        <?php foreach ($bayar_sebelum as $bs) { ?>
+                    Harap lakukan pembayaran sebelum :
+                        <?php foreach ($bayar_sebelum as $bs) {?>
                             <?php echo date('d F', $bs->tgl_pelaksanaan); ?>
-                        <?php } ?>
+                        <?php }?>
                     </div>
                 </div>
                 <div class="col-lg-2">
@@ -147,6 +148,16 @@
                 </div>
             </div>
         <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                    <div id="calendar"></div>
+
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-lg-12">
                 <div class="ibox float-e-margins">
@@ -163,22 +174,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($data as $d) { ?>
+                                        <?php foreach ($data as $d) {?>
                                             <tr>
                                                 <td><?php echo $d->nama_acara ?></td>
                                                 <td><?php echo $d->nama_prasarana ?></td>
                                                 <td><?php echo date('d F Y', $d->tgl_pelaksanaan) ?></td>
                                                 <td>
-                                                    <?php if ($d->approval_pengajuan == "Belum diapprove") { ?>
+                                                    <?php if ($d->approval_pengajuan == "Belum diapprove") {?>
                                                         <button class="btn btn-sm btn-danger">Belum diapprove</button>
-                                                    <?php } else { ?>
+                                                    <?php } else {?>
                                                         <button class="btn btn-sm btn-primary">Sudah diapprove</button>
-                                                    <?php } ?>
+                                                    <?php }?>
                                                 </td>
                                             </tr>
-                                        <?php } ?>
+                                        <?php }?>
                                     </tbody>
-                            
+
                             </table>
                         </div>
 
@@ -200,6 +211,9 @@
 
     <!-- Mainly scripts -->
     <script src="<?php echo base_url() ?>assets/backend/js/jquery-3.1.1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
     <script src="<?php echo base_url() ?>assets/backend/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url() ?>assets/backend/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="<?php echo base_url() ?>assets/backend/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -218,13 +232,24 @@
                 responsive: true,
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [
-                    
+
                 ]
 
             });
 
         });
 
+    </script>
+    <script>
+    $(document).ready(function () {
+        $('#calendar').fullCalendar({
+                dayClick: function() {
+                    alert('a day has been clicked!');
+                },
+                events: <?php echo $events;?>
+                });
+
+    });
     </script>
 
 </body>

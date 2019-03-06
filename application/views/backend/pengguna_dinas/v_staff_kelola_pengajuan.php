@@ -124,8 +124,19 @@
                         </a>
                     </h2>
                 </div>
-                <div class="col-lg-2">
-
+                <div class="col-lg-12" style="margin-top: 15px">
+                <?php if (!empty($notifikasi_bayar) and $notifikasi_bayar > 0):?>
+                <div class="alert alert-danger alert-dismissable">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    Ada <?php echo $notifikasi_bayar?> Pembayaran Belum diperiksa
+                    </div>
+                <?php endif;?>
+                    <?php if (!empty($notifikasi_acc) and $notifikasi_acc > 0):?>
+                <div class="alert alert-danger alert-dismissable">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    Ada <?php echo $notifikasi_acc?> Pembayaran Belum diapprove
+                    </div>
+                <?php endif;?>
                 </div>
             </div>
         <div class="wrapper wrapper-content animated fadeInRight">

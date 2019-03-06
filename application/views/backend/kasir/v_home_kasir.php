@@ -136,9 +136,12 @@
         <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-12">
                 	<h2>Daftar Pengajuan Penyewaan Prasarana</h2>
-                </div>
-                <div class="col-lg-2">
-
+                    <?php if (!empty($notifikasi) and $notifikasi > 0):?>
+                <div class="alert alert-danger alert-dismissable">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    Ada <?php echo $notifikasi?> Pembayaran Belum diperiksa
+                    </div>
+                <?php endif;?>
                 </div>
             </div>
         <div class="wrapper wrapper-content animated fadeInRight">
